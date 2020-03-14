@@ -8,6 +8,7 @@ shopt -s nullglob
 
 # MacOs compat (no readlink -f)
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+cd "$SCRIPTPATH"
 
 generate_warning() {
     cat <<-EOH
@@ -19,12 +20,10 @@ generate_warning() {
 EOH
 }
 
-for v in \
-    2.13.1 \
-    2.12.10 \
-    2.11.12 \
-    2.10.7 \
-; do
+IFS=$'\n' read -d '' -r -a versions < VERSIONS
+
+for v in "${versions[@]}";
+do
     mkdir -p "$v"
     template="Dockerfile.template"
     { generate_warning; cat "$template"; } > "$v/Dockerfile"
