@@ -20,13 +20,13 @@ generate_warning() {
 EOH
 }
 
-IFS=$'\n' read -d '' -r -a versions < VERSIONS
-
-for v in "${versions[@]}";
-do
+while read v; do
+    if [[ "$v" == "" ]]; then
+        continue
+    fi
     mkdir -p "$v"
     template="Dockerfile.template"
     { generate_warning; cat "$template"; } > "$v/Dockerfile"
     sed -i '' -e 's/^\(ARG SCALA_VERSION=\).*/\1'$v'/' "$v/Dockerfile"
     echo "Generated Dockerfile: $v/Dockerfile"
-done
+done <VERSIONS
