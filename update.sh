@@ -28,6 +28,6 @@ for v in \
     mkdir -p "$v"
     template="Dockerfile.template"
     { generate_warning; cat "$template"; } > "$v/Dockerfile"
-    sed -i '' -e 's/^\(ARG SCALA_VERSION\) .*/\1 '"$v"'/' "$v/Dockerfile"
+    sed -i '' -e 's/^\(ARG SCALA_VERSION=\).*/\1'$v'/' "$v/Dockerfile"
     echo "Generated Dockerfile: $v/Dockerfile"
 done

@@ -5,8 +5,7 @@
 #
 FROM openjdk:8
 
-ARG SCALA_VERSION 2.11.12
-
+ARG SCALA_VERSION=2.11.12
 ENV SCALA_HOME "/usr/src/scala"
 ENV PATH "${SCALA_HOME}/bin:$PATH"
 
