@@ -14,8 +14,8 @@ RUN set -ex \
     && mkdir -p /usr/src/scala/ \
     && tar -xzv -C /usr/src/scala --strip-components=1 -f scala.tar.gz \
     && rm scala.tar.gz \
-    && ln -s "${SCALA_HOME}/bin/scala" /usr/local/scala \
-    && ln -s "${SCALA_HOME}/bin/scalac" /usr/local/scalac \
-    && ln -s "${SCALA_HOME}/bin/scaladoc" /usr/local/scaladoc
+    && ln -s "${SCALA_HOME}/bin/scala" /usr/local/bin/scala \
+    && ln -s "${SCALA_HOME}/bin/scalac" /usr/local/bin/scalac \
+    && ln -s "${SCALA_HOME}/bin/scaladoc" /usr/local/bin/scaladoc
 
 CMD ["scala"]
